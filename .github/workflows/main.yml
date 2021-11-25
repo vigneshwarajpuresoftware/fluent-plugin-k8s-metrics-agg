@@ -95,7 +95,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./docker/Dockerfile
-          platforms: linux/amd64
+          platforms: linux/arm64
           push: false
           load: true
           tags: ${{ steps.prep.outputs.tags }}
@@ -107,13 +107,13 @@ jobs:
       - name: Setup Minikube
         run: |
           # Install Kubectl
-          curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl
+          curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/arm64/kubectl
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
           mkdir -p ${HOME}/.kube
           touch ${HOME}/.kube/config
           # Install Minikube
-          curl -Lo minikube https://storage.googleapis.com/minikube/releases/${MINIKUBE_VERSION}/minikube-linux-amd64
+          curl -Lo minikube https://storage.googleapis.com/minikube/releases/${MINIKUBE_VERSION}/minikube-linux-arm64
           chmod +x minikube
           sudo mv minikube /usr/local/bin/
           # Start Minikube and Wait
